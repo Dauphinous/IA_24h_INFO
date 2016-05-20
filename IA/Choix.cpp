@@ -13,6 +13,58 @@ Choix::~Choix()
     //dtor
 }
 
+int distEuclidienne(pair<int, int> pos1, pair<int, int> pos2)
+{
+    int result = 0;
+    result = sqrt(abs(pow((pos1.first-pos2.first), 2) + pow((pos1.second-pos2.second), 2)));
+    return result;
+}
+
+string Choix::IA()
+{
+    string choix = "";
+    Manutentionnaire manuNous = m_manutentionnaires[m_couleur_nous];
+    int nbActionEffectue = 0;
+    if(manuNous.getObjectif().first == -1)
+    {
+
+    }
+        int nbCoupAvantObjectif = distEuclidienne(manuNous.getPosition(), manuNous.getObjectif());
+        for(int i=0; i<nbCoupAvantObjectif && nbActionEffectue<8;i++){
+            if(manuNous.getPosition().first < manuNous.getPosition().first)
+            {
+                choix += "E";
+                nbActionEffectue++;
+            }
+            else if(manuNous.getPosition().first < manuNous.getPosition().first)
+            {
+                choix += "O";
+                nbActionEffectue++;
+            }
+            else if(manuNous.getPosition().second < manuNous.getPosition().second)
+            {
+                choix += "S";
+                nbActionEffectue++;
+            }
+            else if(manuNous.getPosition().second < manuNous.getPosition().second)
+            {
+                choix += "N";
+                nbActionEffectue++;
+            }
+        }
+        for(int i=0; i<m_cave.getSalle(manuNous.getPosition().second, manuNous.getPosition().first).nbEmplacementsLibres() && manuNous.getNbBouteillePorte()>0 && nbActionEffectue<8; i++)
+        {
+            manuNous.poserBouteille();
+            choix += "P";
+            nbActionEffectue++;
+        }
+        if(nbActionEffectue<8)
+        {
+            choix += "I";
+        }
+    return "";
+}
+
 void Choix::partie()
 {
     int nb_ligne = 0;
@@ -53,10 +105,11 @@ void Choix::partie()
     {
         m_couleur_nous = ROSE;
     }
-    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROUGE, pair<int, int>(0,0)));
-    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.BLANC, pair<int, int>(0,0)));
+    m_cave = new Cave(nb_ligne, nb_colonne, casier);
+    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROUGE, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
+    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.BLANC, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
     if(m_nb_manutentionnaire == 3){
-        m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROSE, pair<int, int>(0,0)));
+        m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROSE, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
     }
     // Premier tour de jeu :
     // - réception des actions du premier manutentionnaire
@@ -67,7 +120,7 @@ void Choix::partie()
 
     while(true){
         if(m_couleur_nous == couleur_active){
-
+            tcpGdOrdo->envoiChaine(IA());
         }
         else{
             m_tcpGdOrdo->receptionChaine();
