@@ -25,12 +25,21 @@ string Choix::IA()
     string choix = "";
     Manutentionnaire manuNous = m_manutentionnaires[m_couleur_nous];
     int nbActionEffectue = 0;
+
     if(manuNous.getObjectif().first == -1)
     {
+        if(manuNous.getNbBouteillePorte() == 0)
+        {
+            manuNous.setObjectif(m_cave.getEscalier().first, m_cave.getEscalier().second);
+        }
+        else
+        {
 
+        }
     }
         int nbCoupAvantObjectif = distEuclidienne(manuNous.getPosition(), manuNous.getObjectif());
-        for(int i=0; i<nbCoupAvantObjectif && nbActionEffectue<8;i++){
+        for(int i=0; i<nbCoupAvantObjectif && nbActionEffectue<8; i++)
+        {
             if(manuNous.getPosition().first < manuNous.getPosition().first)
             {
                 choix += "E";
@@ -52,17 +61,29 @@ string Choix::IA()
                 nbActionEffectue++;
             }
         }
-        for(int i=0; i<m_cave.getSalle(manuNous.getPosition().second, manuNous.getPosition().first).nbEmplacementsLibres() && manuNous.getNbBouteillePorte()>0 && nbActionEffectue<8; i++)
+        if(m_cave.getEscalier().first == manuNous.getPosition().first && m_cave.getEscalier().second && manuNous.getPosition().second)
         {
-            manuNous.poserBouteille();
-            choix += "P";
-            nbActionEffectue++;
+            for(int i=0; nbActionEffectue<8;i++)
+            {
+                choix += "R";
+                nbActionEffectue++;
+            }
         }
-        if(nbActionEffectue<8)
+        else
         {
-            choix += "I";
+            for(int i=0; i<m_cave.getSalle(manuNous.getPosition().second, manuNous.getPosition().first).nbEmplacementsLibres() && manuNous.getNbBouteillePorte()>0 && nbActionEffectue<8; i++)
+            {
+                manuNous.poserBouteille();
+                choix += "P";
+                nbActionEffectue++;
+            }
+            if(nbActionEffectue<8)
+            {
+                choix += "I";
+            }
         }
-    return "";
+
+    return choix;
 }
 
 void Choix::partie()
@@ -80,7 +101,7 @@ void Choix::partie()
     m_tcpGdOrdo->envoiChaine("CUMULONIMBUS");
     // - envoi de l'IUT où les membres de notre équipe étudient
     m_tcpGdOrdo->envoiChaine("IUT Bordeaux");
-     // Initialisation du protocole du Grand Ordonnateur.
+    // Initialisation du protocole du Grand Ordonnateur.
     // - réception du nombre de lignes de la cave
     nb_ligne = m_tcpGdOrdo->receptionEntier();
     // - réception du nombre de colonnes de la cave
@@ -95,10 +116,12 @@ void Choix::partie()
     //   ici
     nb_ordre = m_tcpGdOrdo->receptionEntier();
 
-    if(nb_ordre == 1){
+    if(nb_ordre == 1)
+    {
         m_couleur_nous = ROUGE;
     }
-    else if(nb_ordre == 2){
+    else if(nb_ordre == 2)
+    {
         m_couleur_nous = BLANC;
     }
     else
@@ -108,7 +131,8 @@ void Choix::partie()
     m_cave = new Cave(nb_ligne, nb_colonne, casier);
     m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROUGE, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
     m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.BLANC, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
-    if(m_nb_manutentionnaire == 3){
+    if(m_nb_manutentionnaire == 3)
+    {
         m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROSE, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
     }
     // Premier tour de jeu :
@@ -118,11 +142,14 @@ void Choix::partie()
     //   changer de l'envoi de nos actions du second tour de jeu, envoi des
     //   actions une à une
 
-    while(true){
-        if(m_couleur_nous == couleur_active){
+    while(true)
+    {
+        if(m_couleur_nous == couleur_active)
+        {
             tcpGdOrdo->envoiChaine(IA());
         }
-        else{
+        else
+        {
             m_tcpGdOrdo->receptionChaine();
         }
     }
