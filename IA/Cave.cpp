@@ -36,7 +36,7 @@ Cave::Cave(int lignes, int colonnes,const string & casiers)
         numLigne++;
     } while(numColonne - colonnes > 0);
 
-    positionStock = make_pair(numLigne, numColonne);
+    positionStock = make_pair(numColonne, numLigne);
 
 
     for(int i=0;i<lignes;i++)
@@ -75,6 +75,6 @@ std::vector<std::vector <Salle *> > & Cave::getSalles()
 }
 Salle *Cave::getEscalier()
 {
-    return getSalle(m_pos_escalier.second,m_pos_escalier.first);
+    return getSalle(m_pos_escalier.first, m_pos_escalier.second);
 }
 
