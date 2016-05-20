@@ -1,4 +1,5 @@
 #include "Choix.h"
+#include <algorithm>
 
 Choix::Choix(string hote, int port)
 {
@@ -53,10 +54,10 @@ void Choix::partie()
     {
         m_couleur_nous = ROSE;
     }
-    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROUGE, pair<int, int>(0,0)));
-    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.BLANC, pair<int, int>(0,0)));
+//    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(ROUGE, pair<int, int>(0,0)));
+ //   m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(BLANC, pair<int, int>(0,0)));
     if(m_nb_manutentionnaire == 3){
-        m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROSE, pair<int, int>(0,0)));
+     //   m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(ROSE, pair<int, int>(0,0)));
     }
     // Premier tour de jeu :
     // - réception des actions du premier manutentionnaire
@@ -73,5 +74,32 @@ void Choix::partie()
             m_tcpGdOrdo->receptionChaine();
         }
     }
+}
 
+Salle * Choix::meilleureSalle(const Manutentionnaire & m) // Affecte a chaque case une valeur
+{
+    int negatif;
+    int positif;
+
+    Salle * choix = nullptr;
+    int meilleurPoint = -1;
+
+    for(vector<Salle *> v : m_cave->getSalles())
+    {
+        for(Salle * s : v)
+        {
+            negatif = (s->distanceParRapportA(m.getPosition()) + min(m.getNbBouteillePorte(), s->nbEmplacementsLibres())
+             + (s->distanceParRapportA(m.getPosition()) + min(m.getNbBouteillePorte(), s->nbEmplacementsLibres()))) % 7;
+
+            positif = 4 * (s->getDistance() + 1) + min(m.getNbBouteillePorte(), s->nbEmplacementsLibres());
+
+            if(positif -  negatif > meilleurPoint)
+            {
+                meilleurPoint = positif - negatif;
+                choix = s;
+            }
+        }
+    }
+
+    return choix;
 }

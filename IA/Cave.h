@@ -8,12 +8,12 @@ class Cave
 {
 private:
     std::vector<std::vector <Salle *>> m_salles;
-
-
 public:
     Cave(int lignes, int colonnes, const std::string &casiers);
     virtual ~Cave();
-    Salle* getSalle(int l, int c);
+    Salle * getSalle(int l, int c);
+
+    std::vector<std::vector <Salle *> > & getSalles();
 };
 
 #endif // CAVE_H

@@ -117,3 +117,4 @@ std::pair<int,int> Manutentionnaire::getPosition() const
 {
     return m_position;
 }
+

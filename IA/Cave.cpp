@@ -67,3 +67,8 @@ Salle *Cave::getSalle(int l, int c)
 
 }
 
+std::vector<std::vector <Salle *> > & Cave::getSalles()
+{
+    return m_salles;
+}
+
