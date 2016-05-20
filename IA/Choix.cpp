@@ -14,7 +14,7 @@ Choix::~Choix()
     //dtor
 }
 
-int distEuclidienne(pair<int, int> pos1, pair<int, int> pos2)
+int Choix::distEuclidienne(pair<int, int> pos1, pair<int, int> pos2)
 {
     int result = 0;
     result = sqrt(abs(pow((pos1.first-pos2.first), 2) + pow((pos1.second-pos2.second), 2)));
@@ -34,7 +34,7 @@ string Choix::IA()
         }
         else
         {
-
+            manuNous->setObjectif(0, 0);
         }
     }
     int nbCoupAvantObjectif = distEuclidienne(manuNous->getSalle()->getPosition(), manuNous->getObjectif());

@@ -54,3 +54,8 @@ void Salle::poseBouteille()
 {
     m_nb_emplacement--;
 }
+
+Salle * Salle::voisin(const Direction &laDirection)
+{
+    return m_voisins[laDirection];
+}
