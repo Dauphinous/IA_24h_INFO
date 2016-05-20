@@ -32,11 +32,19 @@ std::pair<int, int> Salle::distanceParRapportA(const Salle & uneSalle) const
                      abs(m_position.second - uneSalle.m_position.second));
 }
 
+int Salle::distanceParRapportA(const std::pair<int ,int> & p)  const
+{
+    return abs(m_position.first - p.first)  + abs(m_position.second - p.second);
+}
 int Salle::scorePossible() const
 {
     return 4 * (m_distance + 1);
 }
 
+int Salle::getDistance() const
+{
+    return m_distance;
+}
 int Salle::nbEmplacementsLibres() const
 {
     return m_nb_emplacement;

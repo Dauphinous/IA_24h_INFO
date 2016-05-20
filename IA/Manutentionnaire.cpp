@@ -118,3 +118,4 @@ Salle * Manutentionnaire::getSalle() const
 {
     return m_position;
 }
+
