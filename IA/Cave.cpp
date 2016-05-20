@@ -70,4 +70,7 @@ Salle *Cave::getSalle(int l, int c)
 }
 
 std::pair<int, int> Cave::getEscalier()
+{
+    return m_pos_escalier;
+}
 
