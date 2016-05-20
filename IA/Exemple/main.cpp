@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <cerrno>
 
-#include "IllustrProtoc.h"
+#include "include/IllustrProtoc.h"
 
 // using namespace std;
 

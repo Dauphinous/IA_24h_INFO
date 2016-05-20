@@ -1,0 +1,6 @@
+#ifndef ACTION_H
+#define ACTION_H
+
+enum Action{NORD,EST,SUD,OUEST,POSER,REMPLIR,INTERROMPRE};
+
+#endif // ACTION_H
