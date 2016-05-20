@@ -18,6 +18,7 @@ private:
     Action m_futur_action;
     std::vector<Action> m_actions;
     std::pair<int,int> m_position;
+    std::pair<int, int> m_objectif;
 public:
     void setFuturAction(Action action);
     Manutentionnaire(Bouteille bouteille);
@@ -29,7 +30,8 @@ public:
     void deplacerOuest();
     void faireAction();
     std::string getPhraseAction() const;
-
+    void setObjectif(int x, int y);
+    std::pair getObjectif;
 };
 
 #endif // MANUTENTIONNAIRE_H

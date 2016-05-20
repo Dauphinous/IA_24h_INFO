@@ -76,3 +76,14 @@ void Manutentionnaire::faireAction()
         break;
     }
 }
+
+void Choix::setObjectif(int x, int y)
+{
+    m_objectif.first = x;
+    m_objectif.second = y;
+}
+
+std::pair Choix::getObjectif()
+{
+    return m_objectif;
+}
