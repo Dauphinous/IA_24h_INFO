@@ -5,7 +5,7 @@
 #include "TcpGrandOrdonnateurUnix.h"
 #include "Bouteille.h"
 #include "Cave.h"
-
+#include "Manutentionnaire.h"
 class Choix
 {
     public:
@@ -20,6 +20,7 @@ class Choix
         TcpGrandOrdonnateurUnix *m_tcpGdOrdo;
         int m_nb_manutentionnaire;
         Bouteille m_couleur_nous;
+        map<Bouteille, Manutentionnaire> m_manutentionnaires;
     private:
 };
 
