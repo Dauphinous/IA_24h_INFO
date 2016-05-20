@@ -3,11 +3,13 @@
 #include <cstdlib>
 #include <cerrno>
 
+/*
 #include "IllustrProtoc.h"
 #include "Choix.h"
-
+*/
 int main(int argc, char** argv)
 {
+    /*
     time_t maintenant = time(0);
     std::cout << "Démarrage de notre application C++ ce "
               << ctime(&maintenant); // << "." << endl;
@@ -52,5 +54,6 @@ int main(int argc, char** argv)
         std::exit(EXIT_FAILURE);
     }
     delete choix;
+    */
     std::exit(EXIT_SUCCESS);
 }
