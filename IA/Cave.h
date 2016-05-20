@@ -2,15 +2,16 @@
 #define CAVE_H
 #include"Salle.h"
 #include<vector>
-
+#include<cstdlib>
 
 class Cave
 {
 private:
     std::vector<std::vector <Salle *>> m_salles;
 
+
 public:
-    Cave(std::vector<std::vector<Salle*>> salles);
+    Cave(int lignes, int colonnes, const std::string &casiers);
     virtual ~Cave();
     Salle* getSalle(int l, int c);
 };

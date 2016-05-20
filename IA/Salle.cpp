@@ -3,11 +3,9 @@
 
 using namespace std;
 
-Salle::Salle(int ligne, int colonne, bool stock, int nbEmpLibres, const std::map<Direction, Salle *> lesVoisins) :
+Salle::Salle(int ligne, int colonne, int distance, int nbEmpLibres) :
     m_position (ligne, colonne),
-    m_emplacementsLibres (nbEmpLibres, true),
-    m_voisins (lesVoisins),
-    m_stock (stock)
+    m_emplacementsLibres (nbEmpLibres, true)
 {
 
 }
@@ -22,14 +20,6 @@ const std::pair<int, int> & Salle::getPosition() const
     return m_position;
 }
 
-Salle * Salle::voisin(const Direction & laDirection)
-{
-    if(m_voisins.find(laDirection) != m_voisins.end()) // si il y un voisin a la direction donne
-        return m_voisins[laDirection];
-
-    return nullptr; // sinon on retourne
-}
-
 int Salle::nbEmplacementsLibres() const
 {
     int nb = 0;
@@ -41,7 +31,7 @@ int Salle::nbEmplacementsLibres() const
 
 bool Salle::possedeStock() const
 {
-    return m_stock;
+    return m_distance == 0;
 }
 
 std::pair<int, int> Salle::distanceParRapportA(const Salle & uneSalle) const
