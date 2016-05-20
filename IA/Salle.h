@@ -10,9 +10,7 @@ enum Direction
     Nord,
     Est,
     Sud,
-    Ouest,
-
-    NbDeDirections
+    Ouest
 };
 
 class Salle
@@ -28,6 +26,7 @@ public:
     bool                        possedeStock()  const;
     std::pair<int, int>         distanceParRapportA(const Salle & uneSalle)  const;
     int                         scorePossible() const;
+    void                        poseBouteille();
 private:
     const std::pair<int, int>              m_position;
     std::map<Direction, Salle *>           m_voisins;

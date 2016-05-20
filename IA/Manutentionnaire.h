@@ -5,6 +5,7 @@
 #include "Action.h"
 #include <vector>
 #include <utility>
+#include "Salle.h"
 const int NB_BOUTEILLE_MAX = 10;
 const int NB_MAX_ACTION = 7;
 
@@ -17,11 +18,11 @@ private:
     int m_nb_action;
     Action m_futur_action;
     std::vector<Action> m_actions;
-    std::pair<int,int> m_position;
+    Salle * m_position;
     std::pair<int, int> m_objectif;
 public:
     void setFuturAction(Action action);
-    Manutentionnaire(Bouteille bouteille, std::pair<int, int> position);
+    Manutentionnaire(Bouteille bouteille, Salle *position);
     void poserBouteille();
     void remplirSac();
     void deplacerNord();
@@ -36,7 +37,7 @@ public:
     Bouteille getColorBouteille() const;
     int getNbBouteillePorte() const;
     int getNbActuelAction() const;
-    std::pair<int,int> getPosition() const;
+    Salle *getSalle() const;
 };
 
 #endif // MANUTENTIONNAIRE_H

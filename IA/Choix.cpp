@@ -23,38 +23,38 @@ int distEuclidienne(pair<int, int> pos1, pair<int, int> pos2)
 string Choix::IA()
 {
     string choix = "";
-    Manutentionnaire manuNous = m_manutentionnaires[m_couleur_nous];
+    Manutentionnaire * manuNous = m_manutentionnaires[m_couleur_nous];
     int nbActionEffectue = 0;
-    if(manuNous.getObjectif().first == -1)
+    if(manuNous->getObjectif().first == -1)
     {
 
     }
-        int nbCoupAvantObjectif = distEuclidienne(manuNous.getPosition(), manuNous.getObjectif());
+        int nbCoupAvantObjectif = distEuclidienne(manuNous->getSalle()->getPosition(), manuNous->getObjectif());
         for(int i=0; i<nbCoupAvantObjectif && nbActionEffectue<8;i++){
-            if(manuNous.getPosition().first < manuNous.getPosition().first)
+            if(manuNous->getSalle()->getPosition().first < manuNous->getSalle()->getPosition().first)
             {
                 choix += "E";
                 nbActionEffectue++;
             }
-            else if(manuNous.getPosition().first < manuNous.getPosition().first)
+            else if(manuNous->getSalle()->getPosition().first < manuNous->getSalle()->getPosition().first)
             {
                 choix += "O";
                 nbActionEffectue++;
             }
-            else if(manuNous.getPosition().second < manuNous.getPosition().second)
+            else if(manuNous->getSalle()->getPosition().second < manuNous->getSalle()->getPosition().second)
             {
                 choix += "S";
                 nbActionEffectue++;
             }
-            else if(manuNous.getPosition().second < manuNous.getPosition().second)
+            else if(manuNous->getSalle()->getPosition().second < manuNous->getSalle()->getPosition().second)
             {
                 choix += "N";
                 nbActionEffectue++;
             }
         }
-        for(int i=0; i<m_cave.getSalle(manuNous.getPosition().second, manuNous.getPosition().first).nbEmplacementsLibres() && manuNous.getNbBouteillePorte()>0 && nbActionEffectue<8; i++)
+        for(int i=0; i<manuNous->getSalle()->nbEmplacementsLibres() && manuNous->getNbBouteillePorte()>0 && nbActionEffectue<8; i++)
         {
-            manuNous.poserBouteille();
+            manuNous->poserBouteille();
             choix += "P";
             nbActionEffectue++;
         }
@@ -105,11 +105,11 @@ void Choix::partie()
     {
         m_couleur_nous = ROSE;
     }
-    m_cave = new Cave(nb_ligne, nb_colonne, casier);
-    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROUGE, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
-    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.BLANC, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
+    m_cave = new Cave(nb_ligne, nb_colonne, casiers);
+    m_manutentionnaires[ROUGE] = Manutentionnaire{ROUGE,m_cave->getEscalier()};
+    m_manutentionnaires.insert(std::pair<Bouteille, Manutentionnaire>(BLANC,m_cave->getEscalier());
     if(m_nb_manutentionnaire == 3){
-        m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROSE, pair<int, int>(m_cave->getEscalier().first,m_cave->getEscalier().second)));
+        m_manutentionnaires.insert(std::pair<Bouteille, Manutentionnaire>(ROSE,m_cave->getEscalier());
     }
     // Premier tour de jeu :
     // - réception des actions du premier manutentionnaire

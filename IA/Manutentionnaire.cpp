@@ -1,7 +1,7 @@
 #include <assert.h>
 #include "Manutentionnaire.h"
 
-Manutentionnaire::Manutentionnaire(Bouteille bouteille,std::pair<int,int> position)
+Manutentionnaire::Manutentionnaire(Bouteille bouteille,Salle * position)
     :m_bouteille{bouteille}, m_nb_bouteille_porte{NB_BOUTEILLE_MAX}, m_nb_action{NB_MAX_ACTION},m_position{position} {m_objectif.first = -1; m_objectif.second = -1;}
 
 void Manutentionnaire::setFuturAction(Action action)
@@ -13,6 +13,7 @@ void Manutentionnaire::setFuturAction(Action action)
 void Manutentionnaire::poserBouteille()
 {
     m_nb_bouteille_porte--;
+    m_position->poseBouteille();
 }
 
 void Manutentionnaire::remplirSac()
@@ -32,22 +33,22 @@ std::string Manutentionnaire::getPhraseAction() const
 
 void Manutentionnaire::deplacerNord()
 {
-    m_position.second--;
+    m_position = m_position->voisin(Nord);
 }
 
 void Manutentionnaire::deplacerSud()
 {
-    m_position.second++;
+    m_position = m_position->voisin(Sud);
 }
 
 void Manutentionnaire::deplacerOuest()
 {
-    m_position.first--;
+    m_position = m_position->voisin(Ouest);
 }
 
 void Manutentionnaire::deplacerEst()
 {
-    m_position.first++;
+    m_position = m_position->voisin(Est);
 }
 
 void Manutentionnaire::faireAction()
@@ -113,7 +114,7 @@ int Manutentionnaire::getNbBouteillePorte() const
     return m_nb_bouteille_porte;
 }
 
-std::pair<int,int> Manutentionnaire::getPosition() const
+Salle * Manutentionnaire::getSalle() const
 {
     return m_position;
 }

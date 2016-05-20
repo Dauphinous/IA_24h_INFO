@@ -41,3 +41,8 @@ int Salle::nbEmplacementsLibres() const
 {
     return m_nb_emplacement;
 }
+
+void Salle::poseBouteille()
+{
+    m_nb_emplacement--;
+}

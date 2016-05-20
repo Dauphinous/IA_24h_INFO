@@ -23,7 +23,7 @@ class Choix
         TcpGrandOrdonnateurUnix *m_tcpGdOrdo;
         int m_nb_manutentionnaire;
         Bouteille m_couleur_nous;
-        map<Bouteille, Manutentionnaire> m_manutentionnaires;
+        map<Bouteille, Manutentionnaire *> m_manutentionnaires;
     private:
 };
 

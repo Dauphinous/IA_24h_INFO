@@ -69,5 +69,6 @@ Salle *Cave::getSalle(int l, int c)
 
 }
 
-std::pair<int, int> Cave::getEscalier()
+
+
 
