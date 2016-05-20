@@ -4,8 +4,9 @@
 #include <cerrno>
 
 #include "IllustrProtoc.h"
+#include "Choix.h"
 
-int main()
+int main(int argc, char** argv)
 {
     time_t maintenant = time(0);
     std::cout << "Démarrage de notre application C++ ce "
@@ -30,7 +31,7 @@ int main()
         std::exit(EXIT_FAILURE);
     }
     Choix* choix = new Choix(hote, port);
-    if (illustrProtoc == nullptr)
+    if (choix == nullptr)
     {
         std::cout << "Erreur lors de la création d'une illustration du protocole du Grand Ordonnateur."
                   << std::endl;

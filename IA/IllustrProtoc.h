@@ -32,7 +32,7 @@ private:
     /** Port du Grand Ordonnateur. */
     int port = -1;
     /** Interface pour le protocole du Grand Ordonnateur. */
-    TcpGrandOrdonnateurUnix* tcpGdOrdo = nullptr;
+    TcpGrandOrdonnateurUnix* tcpGdOrdo;
     //TcpGrandOrdonnateurWinsock* tcpGdOrdo = nullptr;
 };
 
