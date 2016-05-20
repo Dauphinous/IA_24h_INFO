@@ -1,3 +1,6 @@
 *.cbp
 *.o
 *.exe
+*.pro
+*.pro.user
+Makefile
