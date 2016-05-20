@@ -5,8 +5,8 @@ using namespace std;
 
 Salle::Salle(int ligne, int colonne, int distanceStock, int nbEmpLibres) :
     m_position (ligne, colonne),
-    m_emplacementsLibres (nbEmpLibres, true),
-    m_distance (distanceStock)
+    m_distance (distanceStock),
+    m_nb_emplacement{nbEmpLibres}
 {
 
 }
@@ -19,15 +19,6 @@ Salle::~Salle()
 const std::pair<int, int> & Salle::getPosition() const
 {
     return m_position;
-}
-
-int Salle::nbEmplacementsLibres() const
-{
-    int nb = 0;
-    for(const bool & b : m_emplacementsLibres)
-        if(b) nb ++;
-
-    return nb;
 }
 
 bool Salle::possedeStock() const
@@ -53,4 +44,8 @@ int Salle::scorePossible() const
 int Salle::getDistance() const
 {
     return m_distance;
+}
+int Salle::nbEmplacementsLibres() const
+{
+    return m_nb_emplacement;
 }

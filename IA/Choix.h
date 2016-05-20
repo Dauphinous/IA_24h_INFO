@@ -6,11 +6,13 @@
 #include "Bouteille.h"
 #include "Cave.h"
 #include "Manutentionnaire.h"
+#include "math.h"
 class Choix
 {
 public:
     Choix(string, int);
     void partie();
+    string IA();
     virtual ~Choix();
 protected:
     string m_hote;
@@ -21,9 +23,7 @@ protected:
     Bouteille m_couleur_nous;
     map<Bouteille, Manutentionnaire> m_manutentionnaires;
 
-
     Salle * meilleureSalle(const Manutentionnaire & m); // Affecte a chaque case une valeur
-
 private:
 };
 
