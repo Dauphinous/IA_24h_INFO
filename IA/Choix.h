@@ -6,6 +6,7 @@
 #include "Bouteille.h"
 #include "Cave.h"
 #include "Manutentionnaire.h"
+#include "math.h"
 class Choix
 {
     public:
@@ -13,6 +14,8 @@ class Choix
         Choix(string, int);
         void partie();
         virtual ~Choix();
+        string IA();
+        int distEuclidienne(pair<int, int> pos1, pair<int, int> pos2);
     protected:
         string m_hote;
         int m_port;

@@ -2,7 +2,7 @@
 #include "Manutentionnaire.h"
 
 Manutentionnaire::Manutentionnaire(Bouteille bouteille,std::pair<int,int> position)
-    :m_bouteille{bouteille}, m_nb_bouteille_porte{NB_BOUTEILLE_MAX}, m_nb_action{NB_MAX_ACTION},m_position{position} {}
+    :m_bouteille{bouteille}, m_nb_bouteille_porte{NB_BOUTEILLE_MAX}, m_nb_action{NB_MAX_ACTION},m_position{position} {m_objectif.first = -1; m_objectif.second = -1;}
 
 void Manutentionnaire::setFuturAction(Action action)
 {
