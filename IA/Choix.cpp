@@ -177,7 +177,7 @@ void Choix::partie()
                 }
                 else
                 {
-                    m_manutentionnaires[m_couleur_nous]->decodeEtAppliquerAction( _tcpGdOrdo->receptionChaine());
+                    m_manutentionnaires[m_couleur_nous]->decodeEtAppliquerAction(m_tcpGdOrdo->receptionChaine());
                 }
             }
 
