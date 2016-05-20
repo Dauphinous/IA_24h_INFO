@@ -164,16 +164,20 @@ void Choix::partie()
             // - envoi de nos actions (comme deuxième manutentionnaire) ; ici, pour
             //   changer de l'envoi de nos actions du second tour de jeu, envoi des
             //   actions une à une
-
+            string choix = "";
             while(true)
             {
                 if(m_couleur_nous == couleur_active)
                 {
-                    m_tcpGdOrdo->envoiChaine(IA());
+                    choix = IA();
+                    for(char c : choix)
+                    {
+                        m_tcpGdOrdo->envoiCaractere(c);
+                    }
                 }
                 else
                 {
-                    m_tcpGdOrdo->receptionChaine();
+                    m_manutentionnaires[m_couleur_nous]->decodeEtAppliquerAction( _tcpGdOrdo->receptionChaine());
                 }
             }
 
