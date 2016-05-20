@@ -1,9 +1,6 @@
 #ifndef BOUTEILLE_H
 #define BOUTEILLE_H
 
-enum Bouteille
-{
-    Rouge,Blanc,Rose
-};
+enum Bouteille{ROUGE,BLANC,ROSE};
 
 #endif // BOUTEILLE_H
