@@ -12,13 +12,11 @@ void Manutentionnaire::setFuturAction(Action action)
 
 void Manutentionnaire::poserBouteille()
 {
-    assert(m_nb_bouteille_porte <= 0);
     m_nb_bouteille_porte--;
 }
 
 void Manutentionnaire::remplirSac()
 {
-    assert(m_nb_bouteille_porte<NB_BOUTEILLE_MAX);
     m_nb_bouteille_porte++;
 }
 
@@ -30,4 +28,51 @@ std::string Manutentionnaire::getPhraseAction() const
         res+= getCodeAction(a);
     }
     return res;
+}
+
+void Manutentionnaire::deplacerNord()
+{
+    m_position.second--;
+}
+
+void Manutentionnaire::deplacerSud()
+{
+    m_position.second++;
+}
+
+void Manutentionnaire::deplacerOuest()
+{
+    m_position.first--;
+}
+
+void Manutentionnaire::deplacerEst()
+{
+    m_position.first++;
+}
+
+void Manutentionnaire::faireAction()
+{
+    switch(m_futur_action)
+    {
+    case NORD:
+        deplacerNord();
+        break;
+    case EST:
+        deplacerEst();
+        break;
+    case SUD:
+        deplacerSud();
+        break;
+    case OUEST:
+        deplacerOuest();
+        break;
+    case POSER:
+        poserBouteille();
+        break;
+    case REMPLIR:
+        remplirSac();
+        break;
+    default:
+        break;
+    }
 }

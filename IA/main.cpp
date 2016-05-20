@@ -5,7 +5,6 @@
 
 #include "IllustrProtoc.h"
 #include "Choix.h"
-
 int main(int argc, char** argv)
 {
     time_t maintenant = time(0);
