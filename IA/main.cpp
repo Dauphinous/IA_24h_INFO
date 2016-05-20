@@ -5,7 +5,7 @@
 
 #include "IllustrProtoc.h"
 
-int main()
+int main(int argc, char** argv)
 {
     time_t maintenant = time(0);
     std::cout << "Démarrage de notre application C++ ce "
