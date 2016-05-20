@@ -4,6 +4,7 @@
 #include <cerrno>
 
 #include "IllustrProtoc.h"
+#include "Choix.h"
 
 int main(int argc, char** argv)
 {
@@ -30,7 +31,7 @@ int main(int argc, char** argv)
         std::exit(EXIT_FAILURE);
     }
     Choix* choix = new Choix(hote, port);
-    if (illustrProtoc == nullptr)
+    if (choix == nullptr)
     {
         std::cout << "Erreur lors de la création d'une illustration du protocole du Grand Ordonnateur."
                   << std::endl;

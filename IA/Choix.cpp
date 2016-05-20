@@ -19,6 +19,7 @@ void Choix::partie()
     int nb_colonne = 0;
     string casiers;
     int nb_ordre;
+    Bouteille couleur_active = Bouteille.ROUGE;
     // Finalisation du « create » du protocole du Grand Ordonnateur.
     // - connexion
     m_tcpGdOrdo->connexion(hote, port);
@@ -41,11 +42,31 @@ void Choix::partie()
     //   dans lequel l'application singeant notre manutentionnaire joue ; 2
     //   ici
     nb_ordre = tcpGdOrdo->receptionEntier();
+
+    if(nb_ordre == 1){
+        m_couleur_nous = Bouteille.ROUGE
+    }
+    else if(nb_ordre == 2){
+        m_couleur_nous == Bouteille.BLANC;
+    }
+    else
+    {
+        m_couleur_nous == Bouteille.ROSE;
+    }
     // Premier tour de jeu :
     // - réception des actions du premier manutentionnaire
     tcpGdOrdo->receptionChaine();
     // - envoi de nos actions (comme deuxième manutentionnaire) ; ici, pour
     //   changer de l'envoi de nos actions du second tour de jeu, envoi des
     //   actions une à une
+
+    while(true){
+        if(m_couleur_nous == couleur_active){
+
+        }
+        else{
+            tcpGdOrdo->receptionChaine();
+        }
+    }
 
 }
