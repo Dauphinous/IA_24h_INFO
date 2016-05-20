@@ -12,6 +12,7 @@ private:
 public:
     Cave(std::vector<std::vector<Salle*>> salles);
     virtual ~Cave();
+    Salle* getSalle(int l, int c);
 };
 
 #endif // CAVE_H

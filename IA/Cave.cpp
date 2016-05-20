@@ -11,3 +11,9 @@ Cave::~Cave()
 {
 
 }
+
+Salle *Cave::getSalle(int l, int c)
+{
+    return m_salles[l][c];
+
+}

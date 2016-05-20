@@ -21,6 +21,7 @@ public:
     Manutentionnaire(Bouteille bouteille);
     void poserBouteille();
     void remplirSac();
+    std::string getPhraseAction() const;
 
 };
 
