@@ -53,6 +53,11 @@ void Choix::partie()
     {
         m_couleur_nous = ROSE;
     }
+    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROUGE, pair<int, int>(0,0)));
+    m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.BLANC, pair<int, int>(0,0)));
+    if(m_nb_manutentionnaire == 3){
+        m_manutentionnaires.insert(pair<Bouteille, Manutentionnaire>(Bouteille.ROSE, pair<int, int>(0,0)));
+    }
     // Premier tour de jeu :
     // - réception des actions du premier manutentionnaire
     m_tcpGdOrdo->receptionChaine();
