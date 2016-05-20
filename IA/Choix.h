@@ -8,20 +8,23 @@
 #include "Manutentionnaire.h"
 class Choix
 {
-    public:
+public:
+    Choix(string, int);
+    void partie();
+    virtual ~Choix();
+protected:
+    string m_hote;
+    int m_port;
+    Cave * m_cave;
+    TcpGrandOrdonnateurUnix *m_tcpGdOrdo;
+    int m_nb_manutentionnaire;
+    Bouteille m_couleur_nous;
+    map<Bouteille, Manutentionnaire> m_manutentionnaires;
 
-        Choix(string, int);
-        void partie();
-        virtual ~Choix();
-    protected:
-        string m_hote;
-        int m_port;
-        Cave *m_cave;
-        TcpGrandOrdonnateurUnix *m_tcpGdOrdo;
-        int m_nb_manutentionnaire;
-        Bouteille m_couleur_nous;
-        map<Bouteille, Manutentionnaire> m_manutentionnaires;
-    private:
+
+    Salle * meilleureSalle(const Manutentionnaire & m); // Affecte a chaque case une valeur
+
+private:
 };
 
 #endif // CHOIX_H
