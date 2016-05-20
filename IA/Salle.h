@@ -30,9 +30,9 @@ public:
     int                         scorePossible() const;
 private:
     const std::pair<int, int>              m_position;
-    std::vector<bool>                      m_emplacementsLibres;
     std::map<Direction, Salle *>           m_voisins;
     int                                    m_distance;
+    int                                    m_nb_emplacement;
 };
 
 #endif // SALLE_H
