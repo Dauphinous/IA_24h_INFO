@@ -3,9 +3,10 @@
 
 using namespace std;
 
-Salle::Salle(int ligne, int colonne, int distance, int nbEmpLibres) :
+Salle::Salle(int ligne, int colonne, int distanceStock, int nbEmpLibres) :
     m_position (ligne, colonne),
-    m_emplacementsLibres (nbEmpLibres, true)
+    m_emplacementsLibres (nbEmpLibres, true),
+    m_distance (distanceStock)
 {
 
 }
@@ -38,4 +39,9 @@ std::pair<int, int> Salle::distanceParRapportA(const Salle & uneSalle) const
 {
     return make_pair(abs(m_position.first - uneSalle.m_position.first),
                      abs(m_position.second - uneSalle.m_position.second));
+}
+
+int Salle::scorePossible() const
+{
+    return 4 * (m_distance + 1);
 }

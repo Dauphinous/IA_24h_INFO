@@ -1,8 +1,8 @@
 #include <assert.h>
 #include "Manutentionnaire.h"
 
-Manutentionnaire::Manutentionnaire(Bouteille bouteille)
-    :m_bouteille{bouteille}, m_nb_bouteille_porte{NB_BOUTEILLE_MAX}, m_nb_action{NB_MAX_ACTION} {}
+Manutentionnaire::Manutentionnaire(Bouteille bouteille,std::pair<int,int> position)
+    :m_bouteille{bouteille}, m_nb_bouteille_porte{NB_BOUTEILLE_MAX}, m_nb_action{NB_MAX_ACTION},m_position{position} {}
 
 void Manutentionnaire::setFuturAction(Action action)
 {
@@ -75,4 +75,45 @@ void Manutentionnaire::faireAction()
     default:
         break;
     }
+}
+
+void Manutentionnaire::setObjectif(int x, int y)
+{
+    m_objectif.first = x;
+    m_objectif.second = y;
+}
+
+std::pair<int,int> Manutentionnaire::getObjectif() const
+{
+    return m_objectif;
+}
+
+
+void Manutentionnaire::decodeEtAppliquerAction(std::string phrase)
+{
+    for(char c : phrase)
+    {
+        m_futur_action = codeToAction(c);
+        faireAction();
+    }
+}
+
+Bouteille Manutentionnaire::getColorBouteille() const
+{
+    return m_bouteille;
+}
+
+int Manutentionnaire::getNbActuelAction() const
+{
+    return m_nb_action;
+}
+
+int Manutentionnaire::getNbBouteillePorte() const
+{
+    return m_nb_bouteille_porte;
+}
+
+std::pair<int,int> Manutentionnaire::getPosition() const
+{
+    return m_position;
 }

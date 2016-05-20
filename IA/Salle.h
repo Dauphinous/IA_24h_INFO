@@ -18,6 +18,7 @@ enum Direction
 class Salle
 {
 public:
+
     Salle(int ligne, int colonne, int distance, int nbEmplacementsLibres);
     virtual ~Salle();
 
@@ -26,11 +27,12 @@ public:
     int                         nbEmplacementsLibres()  const;
     bool                        possedeStock()  const;
     std::pair<int, int>         distanceParRapportA(const Salle & uneSalle)  const;
+    int                         scorePossible() const;
 private:
     const std::pair<int, int>              m_position;
     std::vector<bool>                      m_emplacementsLibres;
     std::map<Direction, Salle *>           m_voisins;
-    int m_distance;
+    int                                    m_distance;
 };
 
 #endif // SALLE_H

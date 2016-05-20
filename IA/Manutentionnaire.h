@@ -18,9 +18,10 @@ private:
     Action m_futur_action;
     std::vector<Action> m_actions;
     std::pair<int,int> m_position;
+    std::pair<int, int> m_objectif;
 public:
     void setFuturAction(Action action);
-    Manutentionnaire(Bouteille bouteille);
+    Manutentionnaire(Bouteille bouteille, std::pair<int, int> position);
     void poserBouteille();
     void remplirSac();
     void deplacerNord();
@@ -29,7 +30,13 @@ public:
     void deplacerOuest();
     void faireAction();
     std::string getPhraseAction() const;
-
+    void setObjectif(int x, int y);
+    std::pair<int,int> getObjectif() const;
+    void decodeEtAppliquerAction(std::string phrase);
+    Bouteille getColorBouteille() const;
+    int getNbBouteillePorte() const;
+    int getNbActuelAction() const;
+    std::pair<int,int> getPosition() const;
 };
 
 #endif // MANUTENTIONNAIRE_H
