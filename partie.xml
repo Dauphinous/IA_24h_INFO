@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<partie>
+	<equipe
+		courriel="nicolas.chabot@etu.u-bordeaux.fr"
+		commande="./IA"
+		systeme="Linux" />
+	<cave
+		nombre_ligne="2"
+		nombre_colonnes="4"
+		casiers="10418@42" />
+	<manutentionnaires>
+		<manutentionnaire nom="tacheron"/>
+		<manutentionnaire/>
+		<manutentionnaire nom="tacheron"/>
+	</manutentionnaires>
+	<tours nombre_tours_desire="2"/>
+</partie>
